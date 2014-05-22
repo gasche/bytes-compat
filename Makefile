@@ -1,5 +1,5 @@
 BYTE_FILES=bytes.cmi bytes.cma
-NATIVE_FILES=bytes.cmx bytes.cmxa bytes.cmxs
+NATIVE_FILES=bytes.cmx bytes.cmxa bytes.a bytes.cmxs
 OCAMLBUILD=ocamlbuild -classic-display -no-links
 
 build: byte native
