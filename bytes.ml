@@ -5,6 +5,7 @@ let of_string = copy
 let to_string = copy
 
 let sub_string = sub
+let blit_string = blit
 
 (* these are trivially safe and could be made into an identity
    function, but given that OCaml signatures distinguish between "val"
@@ -13,3 +14,13 @@ let sub_string = sub
    of any) *)
 external unsafe_to_string : t -> string = "%identity"
 external unsafe_of_string : string -> t = "%identity"
+
+let extend s left right =
+  (* length of the final string *)
+  let dstlen = left + length s + right in
+  (* length of the included portion of the input string *)
+  let srclen = min 0 left + length s + min 0 right in
+  if dstlen < 0 || srclen < 0 then invalid_arg "extend";
+  let t = make dstlen '-' in
+  blit s (max 0 (-left)) t (max 0 left) srclen;
+  t
