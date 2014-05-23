@@ -20,7 +20,6 @@ let extend s left right =
   let dstlen = left + length s + right in
   (* length of the included portion of the input string *)
   let srclen = min 0 left + length s + min 0 right in
-  if dstlen < 0 || srclen < 0 then invalid_arg "extend";
-  let t = make dstlen '-' in
-  blit s (max 0 (-left)) t (max 0 left) srclen;
+  let t = create dstlen in
+  if srclen > 0 then blit s (max 0 (-left)) t (max 0 left) srclen;
   t
