@@ -7,13 +7,8 @@ let to_string = copy
 let sub_string = sub
 let blit_string = blit
 
-(* these are trivially safe and could be made into an identity
-   function, but given that OCaml signatures distinguish between "val"
-   and "external", I thought it best to reuse upstream's choice to
-   avoid any potential copmatibility hurdles (not that I know
-   of any) *)
-external unsafe_to_string : t -> string = "%identity"
-external unsafe_of_string : string -> t = "%identity"
+let unsafe_to_string : t -> string = fun s -> s
+let unsafe_of_string : string -> t = fun s -> s
 
 let extend s left right =
   (* length of the final string *)
