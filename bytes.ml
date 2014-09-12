@@ -23,3 +23,12 @@ let extend s left right =
   let t = create dstlen in
   if srclen > 0 then blit s (max 0 (-left)) t (max 0 left) srclen;
   t
+
+let init len f =
+  let s = create len in
+  for i = 0 to len - 1 do
+    set s i (f i);
+  done;
+  s
+
+let cat = (^)
