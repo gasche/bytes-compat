@@ -26,4 +26,11 @@ let init len f =
   done;
   s
 
+let mapi f input =
+  let output = create (length input) in
+  for i = 0 to length input - 1 do
+    output.[i] <- f i input.[i];
+  done;
+  output
+
 let cat = (^)
